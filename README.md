@@ -21,11 +21,29 @@ Maps that use only stock VPK textures (no embedded `.vmt` files) are skipped aut
 ## Usage
 
 ```bash
-# Auto-detect CS:S installation
+# Auto-detect CS:S installation (checks default Steam paths)
 ./cs-s-texture-fix.sh
 
-# Or specify a custom path
+# Specify the cstrike directory directly
 ./cs-s-texture-fix.sh /path/to/cstrike
+```
+
+### Custom Steam library paths
+
+If you installed CS:S on a secondary drive or custom Steam library folder:
+
+```bash
+# Find your library path from Steam:
+#   Steam → Settings → Storage → (click the drive) → path is shown
+# Then append "/steamapps/common/Counter-Strike Source/cstrike"
+./cs-s-texture-fix.sh "/mnt/games/Steam/steamapps/common/Counter-Strike Source/cstrike"
+```
+
+### Finding your cstrike directory
+
+```bash
+# The gameinfo.txt file marks the cstrike root
+find ~ -path "*/Counter-Strike Source/cstrike/gameinfo.txt" 2>/dev/null
 ```
 
 Run it once after installing new custom maps. The extracted fixes live in `cstrike/custom/` and persist across game updates.
